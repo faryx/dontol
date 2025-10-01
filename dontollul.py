@@ -130,11 +130,18 @@ try:
 except KeyboardInterrupt:
     elapsed_time = time.time() - start_time
     rate = total_requests / elapsed_time if elapsed_time > 0 else 0
+    time_per_request = elapsed_time / total_requests if total_requests > 0 else 0
+    
     print(f"\n\n🛑 STOPPED BY USER")
-    print(f"📊 FINAL STATISTICS:")
-    print(f"Total Requests: {total_requests}")
-    print(f"Successful: {successful_requests}")
-    print(f"Failed: {failed_requests}")
-    print(f"Success Rate: {(successful_requests/total_requests*100):.1f}%" if total_requests > 0 else "0%")
-    print(f"Average Rate: {rate:.2f} requests/second")
-    print(f"Total Runtime: {elapsed_time:.1f} seconds")
+    print("=" * 60)
+    print("📊 FINAL STATISTICS")
+    print("=" * 60)
+    print(f"🔢 Total Requests: {total_requests:,}")
+    print(f"✅ Successful: {successful_requests:,}")
+    print(f"❌ Failed: {failed_requests:,}")
+    print(f"📈 Success Rate: {(successful_requests/total_requests*100):.1f}%" if total_requests > 0 else "0%")
+    print(f"⚡ Average Rate: {rate:.2f} requests/second")
+    print(f"⏱️  Total Runtime: {elapsed_time:.1f} seconds")
+    print(f"🕐 Time per Request: {time_per_request:.3f} seconds ({time_per_request*1000:.0f}ms)")
+    print(f"🧵 Threads Used: {len(threads)}")
+    print("=" * 60)
